@@ -1,4 +1,9 @@
-﻿void CreateArray(string[] stringArray)
+﻿int InputNumber()
+{
+    int num = Convert.ToInt32(Console.ReadLine());
+    return num;
+}
+void CreateArray(string[] stringArray)
 {
     for (int i = 0; i < stringArray.Length; i++)
     {
@@ -35,11 +40,19 @@ void CreateNewArray(string[] oldArray, string[] newArray)
         }
     }
 }
-string[] stringArray = new string[5];
-Console.WriteLine("Введите 5 слов:");
+Console.Write($"Введите количество слов/фраз, которе хотите ввести: ");
+int size = InputNumber();
+string[] stringArray = new string[size];
+Console.WriteLine($"Введите желаемые слова/фразы: ");
 CreateArray(stringArray);
 PrintAray(stringArray);
 Console.WriteLine();
-string[] newStringArray = new string[SearchSize3Char(stringArray)];
-CreateNewArray(stringArray, newStringArray);
-PrintAray(newStringArray);
+int newSize = SearchSize3Char(stringArray);
+string[] newStringArray = new string[newSize];
+if (newSize > 0)
+{
+    CreateNewArray(stringArray, newStringArray);
+    Console.WriteLine("Все элементы с размером 3 или меньше:");
+    PrintAray(newStringArray);
+}
+else Console.WriteLine("Нет элементов с размером 3 символа или меньше.");
